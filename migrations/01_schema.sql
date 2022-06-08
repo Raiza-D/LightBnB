@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS properties CASCADE;
+DROP TABLE IF EXISTS reservations CASCADE;
 
+-- Create 'users' table, its columns, and their attributes
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255),
@@ -8,6 +10,7 @@ CREATE TABLE users (
   password VARCHAR(255)
 );
 
+-- Create 'properties' table, its columns, and their attributes
 CREATE TABLE properties (
   id SERIAL PRIMARY KEY NOT NULL,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -25,4 +28,13 @@ CREATE TABLE properties (
   province VARCHAR(255),
   post_code VARCHAR(255),
   active BOOLEAN DEFAULT TRUE
+);
+
+-- Create 'reservations' table, its columns, and their attributes
+CREATE TABLE reservations (
+  id SERIAL PRIMARY KEY NOT NULL,
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL,
+  property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
+  guest_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
