@@ -1,3 +1,4 @@
+-- Produce a list of the most visited cities
 SELECT properties.city, COUNT(reservations) as total_reservations
 FROM properties
 JOIN reservations ON properties.id = property_id
