@@ -21,7 +21,6 @@ const getUserWithEmail = function(email) {
   return pool
   .query(`SELECT name, email, password from users WHERE email = $1`, [email])
   .then((result) => {
-    console.log(result.rows);
     if (result.rows.length > 0) {
       return result.rows[0];
     } else {
