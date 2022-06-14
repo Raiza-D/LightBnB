@@ -111,25 +111,43 @@ exports.getAllReservations = getAllReservations;
  */
 const getAllProperties = function(options, limit = 10) {
 
-  const queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
+  const queryParams = [];
+
+  let queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
-  LEFT JOIN property_reviews ON properties.id = property_id
-  WHERE city LIKE '%ancouv%'
+  JOIN property_reviews ON properties.id = property_id`;
+
+  if (options.city) {
+    queryParams.push(`%${options.city}%`);
+    queryAllProperties += `WHERE city LIKE $${queryParams.length}`;
+  }
+
+  queryParams.push(limit);
+  queryAllProperties += `
   GROUP BY properties.id
-  HAVING avg(property_reviews.rating) >= 4
   ORDER BY cost_per_night
-  LIMIT 10;`;
-  
+  LIMIT $${queryParams.length}`;
+
+  console.log(queryAllProperties, queryParams);
+
   return pool
-    .query(`SELECT * FROM properties LIMIT $1;`, [10])
-    .then((result) => {
-      // console.log(result.rows);
-      // properties = result.rows;
-      return result.rows;
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+  .query(queryAllProperties, queryParams)
+  .then((result) => {
+    // console.log(result.rows);
+    // properties = result.rows;
+    result.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+
+  // WHERE city LIKE '%ancouv%'
+  // GROUP BY properties.id
+  // HAVING avg(property_reviews.rating) >= 4
+  // ORDER BY cost_per_night
+  // LIMIT 10;`;
+
 }
 
 exports.getAllProperties = getAllProperties;
