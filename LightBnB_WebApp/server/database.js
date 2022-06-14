@@ -98,13 +98,6 @@ const getAllReservations = function(guest_id, limit = 10) {
   .catch((err) => {
     console.log(err.message);
   });
-/* All values showing up as undefined. Dates wrong. Rating wrong. Cost wrong.
-Results only show 7 for guest_id 743 when they have 11 reservations total.
-console.log is wrong on Terminal*/
-
-/* Previous code:
-  return getAllProperties(null, 2); */
-
 }
 exports.getAllReservations = getAllReservations;
 
