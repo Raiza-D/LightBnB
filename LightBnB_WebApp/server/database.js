@@ -54,6 +54,13 @@ const getUserWithId = function(id) {
 }
 exports.getUserWithId = getUserWithId;
 
+// authentication, authorization
+// return everything except what we SHOULD NOT. (e.g. password). What's the risk if we return the password? What's the risk if we return the name?
+// authentication: checking if email and password exists in database AND
+// if info provided by user are matching database info.
+// authorization: checking to see if user has permissions to perform certain
+// operations (e.g. read, write). The id can be helpful in the authorization aspect.  General way of checking authorization: on our users table, there is a column 'Role'. If user has admin role, then they can perform all operations.
+
 
 /**
  * Add a new user to the database.
@@ -61,10 +68,23 @@ exports.getUserWithId = getUserWithId;
  * @return {Promise<{}>} A promise to the user.
  */
 const addUser =  function(user) {
+  return pool
+  .query(`INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *`, [user.name, user.email, user.password])
+  .then((result) => {
+    console.log(result.rows[0]);
+    return result.rows[0];
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+
+/* Previous code logic:
   const userId = Object.keys(users).length + 1;
   user.id = userId;
   users[userId] = user;
-  return Promise.resolve(user);
+  return Promise.resolve(user); */
+
 }
 exports.addUser = addUser;
 
