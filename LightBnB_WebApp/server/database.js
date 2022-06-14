@@ -54,13 +54,6 @@ const getUserWithId = function(id) {
 }
 exports.getUserWithId = getUserWithId;
 
-// authentication, authorization
-// return everything except what we SHOULD NOT. (e.g. password). What's the risk if we return the password? What's the risk if we return the name?
-// authentication: checking if email and password exists in database AND
-// if info provided by user are matching database info.
-// authorization: checking to see if user has permissions to perform certain
-// operations (e.g. read, write). The id can be helpful in the authorization aspect.  General way of checking authorization: on our users table, there is a column 'Role'. If user has admin role, then they can perform all operations.
-
 
 /**
  * Add a new user to the database.
