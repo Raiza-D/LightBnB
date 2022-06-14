@@ -23,7 +23,6 @@ const getUserWithEmail = function(email) {
   .then((result) => {
     console.log(result.rows);
     if (result.rows.length > 0) {
-      console.log(result.rows);
       return result.rows[0];
     } else {
       return null;
