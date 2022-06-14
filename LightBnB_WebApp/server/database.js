@@ -53,10 +53,6 @@ const getUserWithId = function(id) {
   .catch((err) => {
     console.log(err.message);
   });
-
-/* Previous logic: 
-  return Promise.resolve(users[id]); */
-
 }
 exports.getUserWithId = getUserWithId;
 
