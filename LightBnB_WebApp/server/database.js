@@ -88,12 +88,11 @@ const getAllReservations = function(guest_id, limit = 10) {
     GROUP BY properties.id, reservations.id
     ORDER BY reservations.start_date
     LIMIT $2;`;
-    
+
   const allReservationsValues = [guest_id, 10];
 
   return pool.query(queryAllReservations, allReservationsValues)
   .then((result) => {
-    console.log(result.rows);
     return result.rows;
   })
   .catch((err) => {
