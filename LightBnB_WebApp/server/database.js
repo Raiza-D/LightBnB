@@ -40,7 +40,7 @@ exports.getUserWithEmail = getUserWithEmail;
  */
 const getUserWithId = function(id) {
   return pool
-  .query(`SELECT id, name, email, password FROM users WHERE id = $1`, [id])
+  .query(`SELECT id, name, email FROM users WHERE id = $1`, [id])
   .then((result) => {
     if (result.rows.length > 0) {
       return result.rows[0];
