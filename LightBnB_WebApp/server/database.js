@@ -117,6 +117,7 @@ const getAllProperties = function(options, limit = 10) {
   FROM properties
   JOIN property_reviews ON properties.id = property_id`;
 
+  // If owner_id passed in, only return properties belonging to that owner
   if (options.owner_id) {
     queryParams.push(`${options.owner_id}`);
     queryAllProperties += `WHERE owner_id = $${queryParams.length}`;
@@ -125,6 +126,21 @@ const getAllProperties = function(options, limit = 10) {
   if (options.city) {
     queryParams.push(`%${options.city}%`);
     queryAllProperties += `WHERE city LIKE $${queryParams.length}`;
+  }
+
+  if (options.minimum_price_per_night) {
+    queryParams.push(`%${options.minimum_price_per_night}%`);
+    queryAllProperties += `AND cost_per_night >= $${queryParams.length}`;
+  }
+
+  if (options.maximum_price_per_night) {
+    queryParams.push(`%${options.maximum_price_per_night}%`);
+    queryAllProperties += `AND cost_per_night <= $${queryParams.length}`;
+  }
+
+  if (options.minimum_rating) {
+    queryParams.push(`%${options.minimum_rating}%`);
+    queryAllProperties += `AND average_rating >= $${queryParams.length}`;
   }
 
   queryParams.push(limit);
