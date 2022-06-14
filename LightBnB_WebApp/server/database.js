@@ -77,14 +77,6 @@ const addUser =  function(user) {
   .catch((err) => {
     console.log(err.message);
   });
-
-
-/* Previous code logic:
-  const userId = Object.keys(users).length + 1;
-  user.id = userId;
-  users[userId] = user;
-  return Promise.resolve(user); */
-
 }
 exports.addUser = addUser;
 
