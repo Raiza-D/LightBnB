@@ -142,7 +142,8 @@ const getAllProperties = function(options, limit = 10) {
   }
 
   queryAllProperties += `
-  GROUP BY properties.id `;
+  GROUP BY properties.id
+  `;
 
   // If user provides property rating filter in Search form
   if (options.minimum_rating) {
@@ -155,8 +156,6 @@ const getAllProperties = function(options, limit = 10) {
     queryString = queryString + ' WHERE ' + whereClause.join(' AND ');
   }
   array.join (' AND ' ) */
-
-  // WHY DOESN'T 'LIMIT' work?
 
   queryParams.push(limit);
   queryAllProperties += `
@@ -175,14 +174,7 @@ const getAllProperties = function(options, limit = 10) {
     .catch((err) => {
       console.log(err.message);
     });
-
-  // WHERE city LIKE '%ancouv%'
-  // GROUP BY properties.id
-  // HAVING avg(property_reviews.rating) >= 4
-  // ORDER BY cost_per_night
-  // LIMIT 10;`;
 }
-
 exports.getAllProperties = getAllProperties;
 
 
