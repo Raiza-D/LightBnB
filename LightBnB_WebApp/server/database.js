@@ -117,6 +117,9 @@ const getAllProperties = function(options, limit = 10) {
   JOIN property_reviews ON properties.id = property_id
   WHERE 1 = 1 `;
 
+/* WHY DOES SEARCH STILL WORK EVEN when logged in user has no properties
+listed and city filter left blank in Search form */
+
   // If owner_id passed in, only return properties belonging to that owner
   if (options.owner_id) {
     queryParams.push(`${options.owner_id}`);
