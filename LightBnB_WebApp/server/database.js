@@ -117,7 +117,8 @@ const getAllProperties = function(options, limit = 10) {
   JOIN property_reviews ON properties.id = property_id
   WHERE 1 = 1 `;
 
-/* WHY DOES SEARCH STILL WORK EVEN when logged in user has no properties
+  /* LEFT JOIN property_reviews ON properties.id = property_id
+WHY DOES SEARCH STILL WORK EVEN when logged in user has no properties
 listed and city filter left blank in Search form */
 
   // If owner_id passed in, only return properties belonging to that owner
@@ -165,7 +166,8 @@ listed and city filter left blank in Search form */
   ORDER BY cost_per_night
   LIMIT $${queryParams.length}`;
 
-  console.log(queryAllProperties, queryParams);
+  // ORDER BY properties.id DESC 
+  // console.log(queryAllProperties, queryParams);
 
   return pool
     .query(queryAllProperties, queryParams)
@@ -187,9 +189,49 @@ exports.getAllProperties = getAllProperties;
  * @return {Promise<{}>} A promise to the property.
  */
 const addProperty = function(property) {
+
+  const { title, description, owner_id, thumbnail_photo_url, cover_photo_url, cost_per_night, parking_spaces, number_of_bathrooms, number_of_bedrooms, province, city, country, street, post_code } = property;
+
+  const queryAddProperty = `INSERT INTO properties (title, description, owner_id, cover_photo_url, thumbnail_photo_url, cost_per_night, parking_spaces, number_of_bathrooms, number_of_bedrooms, province, city, country, street, post_code) 
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) 
+  RETURNING *
+  `;
+
+  const queryAddPropertyValues = [
+    title,
+    description,
+    owner_id,
+    thumbnail_photo_url,
+    cover_photo_url,
+    cost_per_night,
+    parking_spaces,
+    number_of_bathrooms,
+    number_of_bedrooms,
+    province,
+    city,
+    country,
+    street,
+    post_code,
+  ];
+
+  console.log(queryAddProperty, queryAddPropertyValues)
+
+  return pool
+  .query(queryAddProperty, queryAddPropertyValues)
+  .then((result) => {
+    console.log(result.rows);
+    return result.rows;
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
+
+
+/*  Previous function code logic:
   const propertyId = Object.keys(properties).length + 1;
   property.id = propertyId;
   properties[propertyId] = property;
-  return Promise.resolve(property);
+  return Promise.resolve(property); */
+
 }
 exports.addProperty = addProperty;
