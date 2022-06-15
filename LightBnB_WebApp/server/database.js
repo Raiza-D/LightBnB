@@ -225,13 +225,5 @@ const addProperty = function(property) {
   .catch((err) => {
     console.log(err.message)
   })
-
-
-/*  Previous function code logic:
-  const propertyId = Object.keys(properties).length + 1;
-  property.id = propertyId;
-  properties[propertyId] = property;
-  return Promise.resolve(property); */
-
 }
 exports.addProperty = addProperty;
