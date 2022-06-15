@@ -19,7 +19,7 @@ const pool = new Pool({
  */
 const getUserWithEmail = function(email) {
   return pool
-  .query(`SELECT id, name, email, password from users WHERE email = $1`, [email])
+  .query(`SELECT id, name, email, password from users WHERE LOWER(email) = $1`, [email.toLowerCase()])
   .then((result) => {
     if (result.rows.length > 0) {
       return result.rows[0];
