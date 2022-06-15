@@ -89,7 +89,7 @@ const getAllReservations = function(guest_id, limit = 10) {
     ORDER BY reservations.start_date
     LIMIT $2;`;
 
-  const allReservationsValues = [guest_id, 10];
+  const allReservationsValues = [guest_id, limit];
 
   return pool.query(queryAllReservations, allReservationsValues)
   .then((result) => {
