@@ -115,18 +115,18 @@ const getAllProperties = function(options, limit = 10) {
   let queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
   JOIN property_reviews ON properties.id = property_id
-  `;
+  WHERE 1 = 1 `;
 
   // If owner_id passed in, only return properties belonging to that owner
   if (options.owner_id) {
     queryParams.push(`${options.owner_id}`);
-    queryAllProperties += `WHERE owner_id = $${queryParams.length} `;
+    queryAllProperties += `AND owner_id = $${queryParams.length} `;
   }
 
   // If user provides 'city' filter in Search form
   if (options.city) {
     queryParams.push(`%${options.city}%`);
-    queryAllProperties += `WHERE city LIKE $${queryParams.length} `;
+    queryAllProperties += `AND city LIKE $${queryParams.length} `;
   }
 
   // If user provides min price filter in Search form
@@ -142,20 +142,19 @@ const getAllProperties = function(options, limit = 10) {
   }
 
   queryAllProperties += `
-  GROUP BY properties.id
-  `;
+  GROUP BY properties.id `;
 
   // If user provides property rating filter in Search form
   if (options.minimum_rating) {
     queryParams.push(Number(options.minimum_rating));
     queryAllProperties += `HAVING AVG(property_reviews.rating) >= $${queryParams.length}`;
   }
-  
-  // array.join (' AND ' )
+
   /* 
-if (whereClause.length) {
+  if (whereClause.length) {
     queryString = queryString + ' WHERE ' + whereClause.join(' AND ');
-  } */
+  }
+  array.join (' AND ' ) */
 
   // WHY DOESN'T 'LIMIT' work?
 
