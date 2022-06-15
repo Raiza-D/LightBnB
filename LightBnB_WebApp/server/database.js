@@ -110,7 +110,6 @@ exports.getAllReservations = getAllReservations;
  * @return {Promise<[{}]>}  A promise to the properties.
  */
 const getAllProperties = function(options, limit = 10) {
-
   const queryParams = [];
 
   let queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
@@ -129,7 +128,7 @@ const getAllProperties = function(options, limit = 10) {
     queryParams.push(`%${options.city}%`);
     queryAllProperties += `WHERE city LIKE $${queryParams.length} `;
   }
-  
+
   // If user provides min price filter in Search form
   if (options.minimum_price_per_night) {
     queryParams.push(100 * Number(options.minimum_price_per_night));
@@ -145,13 +144,21 @@ const getAllProperties = function(options, limit = 10) {
   queryAllProperties += `
   GROUP BY properties.id
   `;
-  
+
   // If user provides property rating filter in Search form
   if (options.minimum_rating) {
-    queryParams.push(`${options.minimum_rating}`);
+    queryParams.push(Number(options.minimum_rating));
     queryAllProperties += `HAVING AVG(property_reviews.rating) >= $${queryParams.length}`;
   }
   
+  // array.join (' AND ' )
+  /* 
+if (whereClause.length) {
+    queryString = queryString + ' WHERE ' + whereClause.join(' AND ');
+  } */
+
+  // WHY DOESN'T 'LIMIT' work?
+
   queryParams.push(limit);
   queryAllProperties += `
   ORDER BY cost_per_night
@@ -160,23 +167,21 @@ const getAllProperties = function(options, limit = 10) {
   console.log(queryAllProperties, queryParams);
 
   return pool
-  .query(queryAllProperties, queryParams)
-  .then((result) => {
-    // console.log(result.rows);
-    // properties = result.rows;
-    return result.rows;
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-
+    .query(queryAllProperties, queryParams)
+    .then((result) => {
+      // console.log(result.rows);
+      // properties = result.rows;
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   // WHERE city LIKE '%ancouv%'
   // GROUP BY properties.id
   // HAVING avg(property_reviews.rating) >= 4
   // ORDER BY cost_per_night
   // LIMIT 10;`;
-
 }
 
 exports.getAllProperties = getAllProperties;
