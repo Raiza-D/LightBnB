@@ -197,7 +197,7 @@ const addProperty = function(property) {
   RETURNING *
   `;
 
-  const queryAddPropertyValues = [
+  const addPropQueryValues = [
     title,
     description,
     owner_id,
@@ -214,10 +214,10 @@ const addProperty = function(property) {
     post_code,
   ];
 
-  console.log(queryAddProperty, queryAddPropertyValues)
+  console.log(queryAddProperty, addPropQueryValues)
 
   return pool
-  .query(queryAddProperty, queryAddPropertyValues)
+  .query(queryAddProperty, addPropQueryValues)
   .then((result) => {
     console.log(result.rows);
     return result.rows;
