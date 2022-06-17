@@ -31,6 +31,7 @@ const getUserWithEmail = function(email) {
 }
 exports.getUserWithEmail = getUserWithEmail;
 
+
 /**
  * Get a single user from the database given their id.
  * @param {string} id The id of the user.
@@ -70,6 +71,7 @@ const addUser =  function(user) {
 }
 exports.addUser = addUser;
 
+
 /// Reservations
 
 /**
@@ -98,6 +100,7 @@ const getAllReservations = function(guest_id, limit = 10) {
   });
 }
 exports.getAllReservations = getAllReservations;
+
 
 /// Properties
 
