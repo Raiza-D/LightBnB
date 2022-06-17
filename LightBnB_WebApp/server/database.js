@@ -112,6 +112,8 @@ exports.getAllReservations = getAllReservations;
 const getAllProperties = function(options, limit = 10) {
   const queryParams = [];
 
+  /* Use of 'WHERE 1 = 1' ensures WHERE clause always true. That way we have a
+  WHERE clause to attach the 'AND' statements. */
   let queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
   JOIN property_reviews ON properties.id = property_id
