@@ -1,12 +1,12 @@
 # LightBnB
 
-LightBnB is a simple, single-page app that mimics AirBnB.
+LightBnB is a simple, single-page AirBnB clone.
 
-Users sign up for an account where they can create a new listing to rent out their homes to people on vacation. Account holders can search for properties available for rent using the Search feature, which pulls data from the database built for the app. Account holders can also view any existing properties they own and have listed for rental as well as view a list of past and current reservations.
+Users sign up for an account where they can create a new listing to rent out their homes to people on vacation. Account holders can search for properties available for rent using the Search feature, which pulls data from the database built for the app. Account holders can also view any existing properties they own and have listed for rent as well as view a list of past and current reservations.
 
-The purpose of this project was to design a database using server-side JavaScript to display the information from queries to web pages. It offers practice working with simple and complex SQL queries, relational databases and ERD (entity relationship diagram) design to integrate the database with a Node backend, using `PostgreSQL` and `node-postgres (Node PG)`.
+The purpose of this project was to design a database using server-side JavaScript to display the information from queries to web pages. It offered practice working with simple and complex SQL queries, relational databases and ERD (entity relationship diagram) design to integrate the database with a Node backend, using `PostgreSQL` and `node-postgres (Node PG)`.
 
-The front-end and server codes were already built and provided upon starting this project. The database itself and queries to retrieve data from had to be built and therefore, were added onto the existing components of the app.
+The front-end and server codes were already built and provided upon starting this project. The database itself and queries to retrieve data from it had to be built and were therefore added onto the existing components of the app.
 
 ## Project Structure
 
