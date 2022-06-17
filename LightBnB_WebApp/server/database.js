@@ -102,9 +102,6 @@ const getAllReservations = function(guest_id, limit = 10) {
 exports.getAllReservations = getAllReservations;
 
 /// Properties
-/* LEFT JOIN property_reviews ON properties.id = property_id
-WHY DOES SEARCH STILL WORK EVEN when logged in user has no properties
-listed and city filter left blank in Search form */
 
 /**
  * Get all properties.
@@ -118,48 +115,15 @@ const getAllProperties = function(options, limit = 10) {
   let queryAllProperties = `SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
   JOIN property_reviews ON properties.id = property_id
+  WHERE 1 = 1
   `;
   
-  // WHERE 1 = 1 `;
-
-  /*
   // If owner_id passed in, only return properties belonging to that owner
   if (options.owner_id) {
     queryParams.push(`${options.owner_id}`);
     queryAllProperties += `AND owner_id = $${queryParams.length} `;
-  } */
-
-  let whereClause = [];
-
-  // NEW: If owner_id passed in, only return properties belonging to that owner
-  if (options.owner_id) {
-    queryParams.push(`${options.owner_id}`);
-    whereClause.push(`owner_id = $${queryParams.length}`);
   }
 
-  // NEW: If user provides 'city' filter in Search form
-  if (options.city) {
-    queryParams.push(`%${options.city}%`);
-    whereClause.push(`city LIKE $${queryParams.length}`);
-  }
-
-  // NEW: If user provides min price filter in Search form
-  if (options.minimum_price_per_night) {
-    queryParams.push(100 * Number(options.minimum_price_per_night));
-    whereClause.push(`cost_per_night >= $${queryParams.length}`);
-  }
-
-  // NEW: If user provides max price filter in Search form
-  if (options.maximum_price_per_night) {
-    queryParams.push(100 * Number(options.maximum_price_per_night));
-    whereClause.push(`cost_per_night <= $${queryParams.length}`);
-  }
-
-  if (whereClause.length) {
-    queryAllProperties += "WHERE " + whereClause.join(" AND ");
-  }
-
-  /*
   // If user provides 'city' filter in Search form
   if (options.city) {
     queryParams.push(`%${options.city}%`);
@@ -176,45 +140,26 @@ const getAllProperties = function(options, limit = 10) {
   if (options.maximum_price_per_night) {
     queryParams.push(100 * Number(options.maximum_price_per_night));
     queryAllProperties += `AND cost_per_night <= $${queryParams.length} `;
-  } */
+  }
 
   queryAllProperties += `
   GROUP BY properties.id
   `;
 
-  // If user provides property rating filter in Search form
-  // if (options.minimum_rating) {
-  //   queryParams.push(Number(options.minimum_rating));
-  //   queryAllProperties += `HAVING AVG(property_reviews.rating) >= $${queryParams.length}`;
-  // }
-
-  // NEW
+  // If user provides min property rating filter in Search form
   if (options.minimum_rating) {
     queryParams.push(Number(options.minimum_rating));
-    queryAllProperties += `HAVING AVG(property_reviews.rating) >= $${queryParams.length} `
+    queryAllProperties += `HAVING AVG(property_reviews.rating) >= $${queryParams.length}`;
   }
-
-
-  /* 
-  if (whereClause.length) {
-    queryString = queryString + ' WHERE ' + whereClause.join(' AND ');
-  }
-  array.join (' AND ' ) */
 
   queryParams.push(limit);
-  // whereClause.push(limit);
   queryAllProperties += `
   ORDER BY cost_per_night
   LIMIT $${queryParams.length}`;
 
-  // LIMIT $${queryParams.length}
-
-  // ORDER BY properties.id DESC
-  // console.log(queryAllProperties, queryParams);
   console.log(queryAllProperties, queryParams);
 
   return pool
-    // .query(queryAllProperties, queryParams)
     .query(queryAllProperties, queryParams)
     .then((result) => {
       // console.log(result.rows);
