@@ -206,7 +206,6 @@ const addProperty = function(property) {
   return pool
   .query(queryAddProperty, addPropQueryValues)
   .then((result) => {
-    console.log(result.rows);
     return result.rows;
   })
   .catch((err) => {
