@@ -203,8 +203,6 @@ const addProperty = function(property) {
     post_code,
   ];
 
-  console.log(queryAddProperty, addPropQueryValues)
-
   return pool
   .query(queryAddProperty, addPropQueryValues)
   .then((result) => {
