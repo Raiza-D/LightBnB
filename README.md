@@ -36,9 +36,9 @@ View past and current reservations
 5. Go to http://localhost:3000/ in your browser (preferably Chrome).
 
 ## Dependencies
-- bcrypt: ^3.0.6,
-- body-parser: ^1.19.0,
-- cookie-session: ^1.3.3,
-- express: ^4.17.1,
-- nodemon: ^1.19.1,
-- pg: ^8.7.3
+- `bcrypt: ^3.0.6`
+- `body-parser: ^1.19.0`
+- `cookie-session: ^1.3.3`
+- `express: ^4.17.1`
+- `nodemon: ^1.19.1`
+- `pg: ^8.7.3`
