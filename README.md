@@ -25,6 +25,9 @@ View past and current reservations
 
 ## Database Structure
 
+ERD showing each table's relationship to one another
+!["ERD from Draw.io displaying each table and their relationships to one another"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LighthouseBnB_ERD.drawio.png?raw=true)
+
 ## Project Structure
 - `1_queries` contains some SQL queries to retrieve data from the PostgreSQL database
 - `LightBnB_WebApp` contains HTML, CSS, and JavaScript (client and server side) code as well as database code to render the contents for the app
