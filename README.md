@@ -29,7 +29,7 @@ View past and current reservations
 - `1_queries` contains some SQL queries to retrieve data from the PostgreSQL database
 - `LightBnB_WebApp` contains HTML, CSS, and JavaScript (client and server side) code as well as database code to render the contents for the app
 - `docs` contains screenshots of the app
-- `migrations` contains `sql` files to create the tables needed for the app's database
+- `migrations` contains `sql` files to create the tables needed for the database
 - `seeds` contains `sql` files to populate each of the database's tables with data
 
 ## Getting Started
