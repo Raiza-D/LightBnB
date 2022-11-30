@@ -7,3 +7,6 @@ Users sign up for an account where they can create a new listing to rent out the
 The purpose of this project was to design a database using server-side JavaScript to display the information from queries to web pages. It offered practice working with simple and complex SQL queries, relational databases and ERD (entity relationship diagram) design to integrate the database with a Node backend, using PostgreSQL and node-postgres (Node PG).
 
 ## Final Product
+
+Sign up page
+["Signup page"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_signup.png?raw=true)
