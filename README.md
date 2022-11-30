@@ -37,6 +37,7 @@ View past and current reservations
 
 ## Dependencies
 - `bcrypt: ^3.0.6`
+  - (If you have an error after starting the server, uninstall bcrypt and install again using a higher version e.g. version `5.1.0`)
 - `body-parser: ^1.19.0`
 - `cookie-session: ^1.3.3`
 - `express: ^4.17.1`
