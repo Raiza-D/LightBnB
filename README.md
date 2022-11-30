@@ -22,3 +22,5 @@ Search for a rental property
 
 View past and current reservations
 ![My Reservations page showing past and current reservations](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_myreservationspage.png?raw=true)
+
+## Getting Started
