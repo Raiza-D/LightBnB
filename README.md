@@ -13,3 +13,6 @@ Sign up page
 
 Login page
 !["Login page"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_login.png?raw=true)
+
+Logged in view
+!["View when user logged in"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_loggedinview.png?raw=true)
