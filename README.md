@@ -34,3 +34,5 @@ View past and current reservations
 3. Install dependencies using the `npm install` command.
 4. Start the web server using the `npm run local` command. The app will be served at http://localhost:3000/.
 5. Go to http://localhost:3000/ in your browser (preferably Chrome).
+
+## Dependencies
