@@ -9,4 +9,4 @@ The purpose of this project was to design a database using server-side JavaScrip
 ## Final Product
 
 Sign up page
-["Signup page"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_signup.png?raw=true)
+!["Signup page"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_signup.png?raw=true)
