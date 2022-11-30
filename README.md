@@ -16,3 +16,6 @@ Login page
 
 Logged in view
 !["View when user logged in"](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_loggedinview.png?raw=true)
+
+Search for a rental property
+!["Search page with filters](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_search.png?raw=true)
