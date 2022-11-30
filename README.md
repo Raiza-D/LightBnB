@@ -23,6 +23,11 @@ Search for a rental property
 View past and current reservations
 ![My Reservations page showing past and current reservations](https://github.com/Raiza-D/LightBnB/blob/main/docs/LightBnB_myreservationspage.png?raw=true)
 
+## Database Structure
+
+## Project Structure
+
+
 ## Getting Started
 1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
 2. Clone your repository onto your local device.
