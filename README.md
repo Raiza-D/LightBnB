@@ -1,6 +1,6 @@
 # LightBnB
 
-LightBnB is a simple, single-page clone to AirBnB.
+LightBnB is a simple application clone to AirBnB.
 
 Users sign up for an account where they can create a new listing to rent out their homes to people on vacation. Account holders can search for properties available for rent using the Search feature, which pulls data from the database. Account holders can also view any existing properties they own and have listed for rent as well as view past and current reservations.
 
